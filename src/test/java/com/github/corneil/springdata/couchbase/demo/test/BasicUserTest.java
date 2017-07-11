@@ -102,6 +102,12 @@ public class BasicUserTest {
 		for (GroupMember groupMember : groupMemberRepository.findAll()) {
 			log.info("member:{}", groupMember);
 			assertNotNull(groupMember.getMember());
+			if (groupMember.getMember().getId() == null) {
+				log.error("groupMember.member.id is null");
+			}
+			if (groupMember.getMemberOfgroup().getId() == null) {
+				log.error("groupMember.memberOfgroup.id is null");
+			}
 			assertNotNull(groupMember.getMemberOfgroup());
 			// user was modified after groupMember was written which means reading should retrieve modified user
 			assertEquals("Joe Soap Modified", groupMember.getMember().getFullName());

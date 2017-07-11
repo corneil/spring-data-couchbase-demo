@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(of = "groupName")
 public class GroupInfo {
 	@Id
-	@Field
 	@GeneratedValue(strategy = GenerationStrategy.UNIQUE)
 	private String id;
 
