@@ -17,6 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(of = {"userId"})
 public class UserInfo {
 	@Id
+	@Field
 	@GeneratedValue(strategy = GenerationStrategy.UNIQUE)
 	String id;
 
