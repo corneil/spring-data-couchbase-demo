@@ -146,5 +146,7 @@ public class BasicUserTest {
 		UserInfo loaded = userInfoRepository.findOne(id);
 		assertNotNull(loaded);
 		assertNotNull(loaded.getId());
+		assertEquals(user.getEmailAddress(), loaded.getEmailAddress());
+		assertEquals(user.getDateOfBirth(), loaded.getDateOfBirth());
 	}
 }
