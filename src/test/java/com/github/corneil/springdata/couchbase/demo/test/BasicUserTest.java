@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -28,10 +29,8 @@ import static org.junit.Assert.*;
 public class BasicUserTest {
 	@Autowired
 	protected UserInfoRepository userInfoRepository;
-
 	@Autowired
 	protected GroupInfoRepository groupInfoRepository;
-
 	@Autowired
 	protected GroupMemberRepository groupMemberRepository;
 
@@ -132,5 +131,20 @@ public class BasicUserTest {
 		for (UserInfo userInfo : users) {
 			assertNotNull(userInfo.getId());
 		}
+	}
+
+	@Test
+	public void testFindOne() throws ParseException {
+		String id = UUID.randomUUID().toString();
+		UserInfo user = new UserInfo();
+		user.setId(id);
+		user.setUserId("joe");
+		user.setDateOfBirth(makeDate("1999-11-01"));
+		user.setEmailAddress("joe@soap.com");
+		user.setFullName("Joe Soap");
+		userInfoRepository.save(user);
+		UserInfo loaded = userInfoRepository.findOne(id);
+		assertNotNull(loaded);
+		assertNotNull(loaded.getId());
 	}
 }
